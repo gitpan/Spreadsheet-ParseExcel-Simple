@@ -3,7 +3,7 @@ package Spreadsheet::ParseExcel::Simple;
 use strict;
 use Spreadsheet::ParseExcel;
 use vars qw/$VERSION/;
-$VERSION = '1.00';
+$VERSION = '1.01';
 
 =head1 NAME
 
@@ -34,9 +34,8 @@ Spreadsheet::ParseExcel directly.
 
   my $xls = Spreadsheet::ParseExcel::Simple->read('spreadsheet.xls');
 
-This opens the spreadsheet specified for you. 
-
-sub book { shift->{book} }
+This opens the spreadsheet specified for you. Returns undef if we cannot
+read the book.
 
 =head2 sheets
 
@@ -79,10 +78,11 @@ it under the same terms as Perl itself.
 
 sub read {
   my $class = shift;
-  bless {
-    book => Spreadsheet::ParseExcel->new->Parse(shift),
-  }, $class;
+  my $book = Spreadsheet::ParseExcel->new->Parse(shift) or return;
+  bless { book => $book }, $class;
 }
+
+sub book { shift->{book} }
 
 sub sheets {
   map Spreadsheet::ParseExcel::Simple::_Sheet->new($_), 

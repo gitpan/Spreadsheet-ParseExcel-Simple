@@ -1,5 +1,9 @@
 Revision history for Perl extension Spreadsheet::ParseExcel::Simple.
 
+1.01  Thu Dec 12 2002
+	- return undef if can't read the document 
+  (thanks to Marty Pauley and Adrian Howard)
+
 1.00  Wed Aug 14 2002
 	- tweaked tests to work better when you don't have 
      Spreadsheet::WriteExcel
