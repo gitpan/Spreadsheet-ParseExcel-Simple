@@ -12,7 +12,7 @@ eval {
 if ($@) {
   ok(1, "Need File::Temp and Spreadsheet::WriteExcel::Simple");
   ok(1, " for sensible testing.");
-  ok(1, "  - skipping tests") for (1 .. 6);
+  ok(1, "  - skipping tests") for (1 .. 9);
 } else {
   File::Temp->import(qw/tempfile tempdir/);  
   my $dir1 = tempdir(CLEANUP => 1);

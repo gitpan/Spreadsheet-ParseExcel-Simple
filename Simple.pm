@@ -3,7 +3,7 @@ package Spreadsheet::ParseExcel::Simple;
 use strict;
 use Spreadsheet::ParseExcel;
 use vars qw/$VERSION/;
-$VERSION = '0.02';
+$VERSION = '1.00';
 
 =head1 NAME
 
