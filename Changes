@@ -1,5 +1,9 @@
 Revision history for Perl extension Spreadsheet::ParseExcel::Simple.
 
+0.02  Thu Sep 13 2001
+	- handle empty worksheets better
+           (Thanks to Mark Thomas)
+
 0.01  Sat Sep 1 2001
 	- original version
 

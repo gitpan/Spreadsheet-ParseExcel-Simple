@@ -3,7 +3,7 @@ package Spreadsheet::ParseExcel::Simple;
 use strict;
 use Spreadsheet::ParseExcel;
 use vars qw/$VERSION/;
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 =head1 NAME
 
@@ -85,9 +85,8 @@ sub read {
 }
 
 sub sheets {
-  my $self = shift;
-  return map Spreadsheet::ParseExcel::Simple::_Sheet->new($_), 
-                @{$self->{book}->{Worksheet}};
+  map Spreadsheet::ParseExcel::Simple::_Sheet->new($_), 
+   @{shift->{book}->{Worksheet}};
 }
 
 package Spreadsheet::ParseExcel::Simple::_Sheet;
@@ -97,11 +96,14 @@ sub new {
   my $sheet = shift;
   bless {
     sheet => $sheet,
-    row   => $sheet->{MinRow},
+    row   => $sheet->{MinRow} || 0,
   }, $class;
 }
 
-sub has_data { $_[0]->{row} <= $_[0]->{sheet}->{MaxRow} } 
+sub has_data { 
+  my $self = shift;
+  $self->{sheet}->{MaxRow} and ($self->{row} <= $self->{sheet}->{MaxRow});
+}
 
 sub next_row {
   map { $_ ? $_->Value : "" } @{$_[0]->{sheet}->{Cells}[$_[0]->{row}++]};
