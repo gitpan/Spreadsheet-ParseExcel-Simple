@@ -3,7 +3,7 @@ package Spreadsheet::ParseExcel::Simple;
 use strict;
 use Spreadsheet::ParseExcel;
 use vars qw/$VERSION/;
-$VERSION = '1.01';
+$VERSION = '1.02';
 
 =head1 NAME
 
@@ -61,18 +61,23 @@ Fetch the next row of data back.
 
 =head1 AUTHOR
 
-Tony Bowden, E<lt>kasei@tmtm.comE<gt>.
+Tony Bowden
+
+=head1 BUGS and QUERIES
+
+Please direct all correspondence regarding this module to:
+  bug-Spreadsheet-ParseExcel-Simple@rt.cpan.org
+
+=head1 COPYRIGHT and LICENSE
+
+Copyright (C) 2001-2004 Tony Bowden. All rights reserved.
+
+This module is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
 
 =head1 SEE ALSO
 
 L<Spreadsheet::ParseExcel>. 
-
-=head1 COPYRIGHT
-
-Copyright (C) 2001 Tony Bowden. All rights reserved.
-
-This module is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
 
 =cut
 
@@ -102,7 +107,7 @@ sub new {
 
 sub has_data { 
   my $self = shift;
-  $self->{sheet}->{MaxRow} and ($self->{row} <= $self->{sheet}->{MaxRow});
+  defined $self->{sheet}->{MaxRow} and ($self->{row} <= $self->{sheet}->{MaxRow});
 }
 
 sub next_row {
