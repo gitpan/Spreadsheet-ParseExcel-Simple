@@ -1,9 +1,9 @@
 package Spreadsheet::ParseExcel::Simple;
 
+$VERSION = '1.03';
+
 use strict;
 use Spreadsheet::ParseExcel;
-use vars qw/$VERSION/;
-$VERSION = '1.02';
 
 =head1 NAME
 
@@ -28,7 +28,7 @@ You simply loop over the sheets, and fetch rows to arrays.
 For anything more complex, you probably want to use
 Spreadsheet::ParseExcel directly.
 
-=head1 METHODS
+=head1 BOOK METHODS
 
 =head2 read
 
@@ -45,6 +45,17 @@ Each spreadsheet can contain one or more worksheets. This fetches them
 all back. You can then iterate over them, or jump straight to the one
 you wish to play with.
 
+=head2 book
+
+	my $book = $xls->book;
+
+The Spreadsheet::ParseExcel object we are working with. You can use this
+if you need to manipulate it in ways that this interface doesn't allow.
+
+=head1 SHEET METHODS
+
+These methods can be called on each sheet returned from $xls->sheets:
+
 =head2 has_data
 
   if ($sheet->has_data) { ... }
@@ -59,6 +70,14 @@ the end of the sheet.
 
 Fetch the next row of data back.
 
+=head2 sheet
+
+	my $obj = $sheet->sheet;
+
+The underlying Spreadsheet::ParseExcel object for the worksheet. You can
+use this if you need to manipulate it in ways that this interface
+doesn't allow (e.g. asking it for the sheet's name).
+
 =head1 AUTHOR
 
 Tony Bowden
@@ -68,12 +87,17 @@ Tony Bowden
 Please direct all correspondence regarding this module to:
   bug-Spreadsheet-ParseExcel-Simple@rt.cpan.org
 
-=head1 COPYRIGHT and LICENSE
+=head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2001-2004 Tony Bowden. All rights reserved.
+  Copyright (C) 2001-2005 Tony Bowden.
 
-This module is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+  This program is free software; you can redistribute it and/or modify it under
+  the terms of the GNU General Public License; either version 2 of the License,
+  or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  FOR A PARTICULAR PURPOSE.
 
 =head1 SEE ALSO
 
@@ -104,6 +128,8 @@ sub new {
     row   => $sheet->{MinRow} || 0,
   }, $class;
 }
+
+sub sheet { shift->{sheet} }
 
 sub has_data { 
   my $self = shift;

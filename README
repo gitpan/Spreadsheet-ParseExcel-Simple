@@ -18,7 +18,7 @@ DESCRIPTION
     For anything more complex, you probably want to use
     Spreadsheet::ParseExcel directly.
 
-METHODS
+BOOK METHODS
   read
       my $xls = Spreadsheet::ParseExcel::Simple->read('spreadsheet.xls');
 
@@ -32,6 +32,15 @@ METHODS
     all back. You can then iterate over them, or jump straight to the one
     you wish to play with.
 
+  book
+            my $book = $xls->book;
+
+    The Spreadsheet::ParseExcel object we are working with. You can use this
+    if you need to manipulate it in ways that this interface doesn't allow.
+
+SHEET METHODS
+    These methods can be called on each sheet returned from $xls->sheets:
+
   has_data
       if ($sheet->has_data) { ... }
 
@@ -44,15 +53,31 @@ METHODS
 
     Fetch the next row of data back.
 
+  sheet
+            my $obj = $sheet->sheet;
+
+    The underlying Spreadsheet::ParseExcel object for the worksheet. You can
+    use this if you need to manipulate it in ways that this interface
+    doesn't allow (e.g. asking it for the sheet's name).
+
 AUTHOR
-    Tony Bowden, <kasei@tmtm.com>.
+    Tony Bowden
+
+BUGS and QUERIES
+    Please direct all correspondence regarding this module to:
+    bug-Spreadsheet-ParseExcel-Simple@rt.cpan.org
+
+COPYRIGHT AND LICENSE
+      Copyright (C) 2001-2005 Tony Bowden.
+
+      This program is free software; you can redistribute it and/or modify it under
+      the terms of the GNU General Public License; either version 2 of the License,
+      or (at your option) any later version.
+
+      This program is distributed in the hope that it will be useful, but WITHOUT
+      ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+      FOR A PARTICULAR PURPOSE.
 
 SEE ALSO
     Spreadsheet::ParseExcel.
-
-COPYRIGHT
-    Copyright (C) 2001 Tony Bowden. All rights reserved.
-
-    This module is free software; you can redistribute it and/or modify it
-    under the same terms as Perl itself.
 

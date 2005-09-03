@@ -1,5 +1,9 @@
 Revision history for Perl extension Spreadsheet::ParseExcel::Simple.
 
+1.03  Sat Sep  3 22:32:22 UTC 2005
+	- Document accessing the underlying Spreadsheet::ParseExcel objects
+	- Tidy tests
+
 1.02  Wed Mar 23 2005
 	- handle single row worksheets
   (Josh Rosenbaum, John McNamara)
