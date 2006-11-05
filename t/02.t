@@ -8,7 +8,6 @@ plan skip_all => "Need Spreadsheet::WriteExcel for this test" if $@;
 plan tests => 2;
 
 use strict;
-use Spreadsheet::WriteExcel;
 use Spreadsheet::ParseExcel::Simple;
 
 my $workbook   = Spreadsheet::WriteExcel->new("test.xls");
